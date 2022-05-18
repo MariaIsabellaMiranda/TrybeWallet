@@ -1,1 +1,7 @@
-// Esse reducer será responsável por tratar as informações da pessoa usuária
+import 
+
+const INITIAL_STATE = {};
+
+const user = (state = INITIAL_STATE, action) => {
+  
+}
