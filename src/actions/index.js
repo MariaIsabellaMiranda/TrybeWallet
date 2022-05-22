@@ -15,6 +15,11 @@ export const saveExpenses = (expenses, currencies) => ({
   currencies,
 });
 
+export const updateExpenses = (newExpense) => ({
+  type: 'NEW_EXPENSE',
+  newExpense,
+});
+
 export const requestAPI = () => ({ type: 'REQUEST_API' });
 
 const URL = 'https://economia.awesomeapi.com.br/json/all';

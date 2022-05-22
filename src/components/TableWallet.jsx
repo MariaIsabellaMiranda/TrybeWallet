@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { updateExpenses } from '../actions';
 
 class TableWallet extends React.Component {
+  deletLine = (id) => {
+    const { expenses, updateExpense } = this.props;
+    const newExpenses = expenses.filter((exp) => exp.id !== id);
+    updateExpense(newExpenses);
+  }
+
   render() {
     const { expenses } = this.props;
     const tableTh = ['Descrição', 'Tag', 'Método de pagamento', 'Valor',
@@ -30,6 +37,23 @@ class TableWallet extends React.Component {
 
               </td>
               <td>Real</td>
+              <td>
+                <button
+                  type="button"
+                  data-testid="edit-btn"
+                >
+                  Editar
+
+                </button>
+                <button
+                  type="button"
+                  data-testid="delete-btn"
+                  onClick={ () => this.deletLine(exp.id) }
+                >
+                  Excluir
+
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -40,10 +64,15 @@ class TableWallet extends React.Component {
 
 TableWallet.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
+  updateExpense: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps)(TableWallet);
+const mapDispatchToProps = (dispatch) => ({
+  updateExpense: (data) => dispatch(updateExpenses(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableWallet);

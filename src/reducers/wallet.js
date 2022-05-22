@@ -23,6 +23,11 @@ const wallet = (state = INITIAL_STATE, action) => {
       expenses: [...state.expenses, {
         ...action.expenses, exchangeRates: action.currencies }],
     };
+  case 'NEW_EXPENSE':
+    return {
+      ...state,
+      expenses: action.newExpense,
+    };
   default:
     return state;
   }
