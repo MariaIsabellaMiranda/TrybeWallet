@@ -45,8 +45,8 @@ class Wallet extends React.Component {
     const { expenses } = this.props;
     let despesaTotal = 0;
     expenses.forEach((exp) => {
-      const { currency } = exp;
-      despesaTotal += (exp.value * exp.exchangeRates[currency].ask); // preciso colocar o currency entre [] para funcionar com 'dot notation '
+      despesaTotal += Number(exp.value)
+      * Number(exp.exchangeRates[exp.currency].ask); // preciso colocar o currency entre [] para funcionar com 'dot notation '
     });
     return despesaTotal.toFixed(2);
   };
