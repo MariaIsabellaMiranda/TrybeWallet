@@ -4,23 +4,41 @@ export const userLogin = ({ email, password }) => ({
   password,
 });
 
-export const wallet = (currencies) => ({
-  type: 'DESPESA_TOTAL',
+export const getCurrencies = (currenciesKeys) => ({
+  type: 'CURRENCIES',
+  currenciesKeys,
+});
+
+export const saveExpenses = (expenses, currencies) => ({
+  type: 'EXPENSES',
+  expenses,
   currencies,
 });
 
 export const requestAPI = () => ({ type: 'REQUEST_API' });
 
-const url = 'https://economia.awesomeapi.com.br/json/all';
+const URL = 'https://economia.awesomeapi.com.br/json/all';
 
 export const fetchAPI = () => async (dispatch) => {
   try {
     dispatch(requestAPI());
-    const currencies = await fetch(url);
+    const currencies = await fetch(URL);
     const currenciesResolved = await currencies.json();
-    const currenciesKeys = Object.keys(currenciesResolved)
-      .filter((moeda) => moeda !== 'USDT');
-    dispatch(wallet(currenciesKeys));
+    delete currenciesResolved.USDT; // remove do objeto a chave que eu quiser, no caso .USDT :)
+    const currenciesKeys = Object.keys(currenciesResolved);
+    dispatch(getCurrencies(currenciesKeys));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const fetchApiExpenses = (expenses) => async (dispatch) => {
+  try {
+    dispatch(requestAPI());
+    const currencies = await fetch(URL);
+    const currenciesResolved = await currencies.json();
+    delete currenciesResolved.USDT; // remove do objeto a chave que eu quiser, no caso .USDT :)
+    dispatch(saveExpenses(expenses, currenciesResolved));
   } catch (e) {
     console.error(e);
   }
