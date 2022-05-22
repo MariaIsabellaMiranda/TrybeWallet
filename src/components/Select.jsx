@@ -7,7 +7,12 @@ class Select extends React.Component {
     return (
       <label htmlFor={ select }>
         { label }
-        <select name={ select } id={ select } data-testid={ testid } onChange={ (e) => handleChange(e) }>
+        <select
+          name={ select }
+          id={ select }
+          data-testid={ testid }
+          onChange={ (e) => handleChange(e) }
+        >
           {options.map((opt) => (
             <option key={ opt }>{ opt }</option>
           ))}
