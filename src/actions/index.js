@@ -20,6 +20,11 @@ export const updateExpenses = (newExpense) => ({
   newExpense,
 });
 
+export const actionEditExpense = (editExpense) => ({
+  type: 'EXPENSE_EDIT',
+  editExpense,
+});
+
 export const requestAPI = () => ({ type: 'REQUEST_API' });
 
 const URL = 'https://economia.awesomeapi.com.br/json/all';

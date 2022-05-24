@@ -10,8 +10,14 @@ class TableWallet extends React.Component {
     updateExpense(newExpenses);
   }
 
+  // editForm = (id) => {
+  //   const { expenses, expenseEd } = this.props;
+  //   const expenseEdt = expenses.find((exp) => exp.id === id);
+  //   expenseEd(expenseEdt);
+  // }
+
   render() {
-    const { expenses } = this.props;
+    const { expenses, editForm } = this.props;
     const tableTh = ['Descrição', 'Tag', 'Método de pagamento', 'Valor',
       'Moeda', 'Câmbio utilizado', 'Valor convertido',
       'Moeda de conversão', 'Editar/Excluir'];
@@ -41,6 +47,7 @@ class TableWallet extends React.Component {
                 <button
                   type="button"
                   data-testid="edit-btn"
+                  onClick={ () => editForm(exp.id) }
                 >
                   Editar
 
@@ -65,6 +72,7 @@ class TableWallet extends React.Component {
 TableWallet.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
   updateExpense: PropTypes.func.isRequired,
+  editForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
