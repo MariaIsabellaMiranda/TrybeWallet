@@ -2,7 +2,7 @@
 
 # Sobre
 
-<p>Foi feita uma aplicação para computar gastos, construída em React e utilizando Redux como ferramente de manipulação de estado.<br>
+<p>Foi feita uma aplicação Front-End para computar gastos, construída em React e utilizando Redux como ferramente de manipulação de estado.<br>
 Esta aplicação computa os gastos em diferentes moedas e converte tudo para uma única moeda, que pode ser escolhida por quem usa. Para obter as informações sobre nomes, cotações e outros dados sobre as moedas foi utilizada uma API de Cotações de Moedas.<p>
 
 <br>
